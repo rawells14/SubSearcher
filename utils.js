@@ -1,7 +1,7 @@
 
 function youTubeAPICall(extension, params, onSuccess){
     var url_base = "https://www.googleapis.com/youtube/v3/";
-    var key = chrome.runtime.getManifest()["api_key"];
+    var key = "AIzaSyA31X4L7XEUr-5MCf5Muptez91vZjSrH20";
     var reqUrl = url_base + extension + "?";
 
     for (var jkey in params) {
