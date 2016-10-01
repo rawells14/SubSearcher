@@ -5,7 +5,7 @@
   "description": "This extension shows a Google Image search result for the current page",
   "version": "1.0",
   "content_scripts": [{
-    "js": ["jquery-3.1.1.js", "popup.js", "background.js"],
+    "js": ["jquery-3.1.1.js", "popup.js", "background.js", "utils.js"],
     "matches": ["http://*/*", "https://*/*"]
  }],
 
@@ -17,5 +17,6 @@
     "activeTab",
     "https://www.googleapis.com/*",
     "tabs"
-  ]
+  ],
+  "api_key": "AIzaSyA31X4L7XEUr-5MCf5Muptez91vZjSrH20"
 }
