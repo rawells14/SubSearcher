@@ -1,5 +1,12 @@
 /*This sets the height/width of the popup window*/
 html{
+	width: 350px;
 }
 body{
+	width: 350px;
+}
+.center{
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
 }
