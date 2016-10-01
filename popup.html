@@ -3,37 +3,46 @@
  This page is shown when the extension button is clicked, because the
  "browser_action" field in manifest.json contains the "default_popup" key with
  value "popup.html".
- -->
+-->
 <html>
-  <head>
+<head>
+  <script   src="https://code.jquery.com/jquery-3.1.1.js"   integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="   crossorigin="anonymous"></script>
   <link rel="stylesheet" href="vendor/materialize/css/materialize.min.css">
-  <script src="vendor/materialize/js/materialize.js"></script>
-    <title>Start Searching Now</title>
-    <style>
-      body {
-        font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
-        font-size: 100%;
-      }
-      #status {
-        /* avoid an excessively wide status text */
-        white-space: pre;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        max-width: 400px;
-      }
-    </style>
+  <link rel="stylesheet" href="popup.css">
+  
+  <script src="vendor/materialize/js/materialize.min.js"></script>
+  <title>Start Searching Now</title>
+  <style>
+    body {
+      font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
+      font-size: 100%;
+    }
+    #status {
+      /* avoid an excessively wide status text */
+      white-space: pre;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      max-width: 400px;
+    }
+  </style>
 
     <!--
       - JavaScript and HTML must be in separate files: see our Content Security
       - Policy documentation[1] for details and explanation.
       -
       - [1]: https://developer.chrome.com/extensions/contentSecurityPolicy
-     -->
+    -->
     <script src="popup.js"></script>
   </head>
   <body>
-    <div id="status"></div>
+    <p>Search for any word of phrase in the YouTube Video</p>
+    <!-- <div id="status"></div>-->  
+    <div class="search-wrapper card">
+      <input id="search"><i class="material-icons">search</i>
+      <i class="material-icons">search</i>
+      <div class="search-results"></div>
+    </div>
     <img id="image-result" hidden>
   </body>
-</html>
+  </html>
 
