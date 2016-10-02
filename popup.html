@@ -43,22 +43,24 @@
     <script src="popup.js"></script>
   </head>
   <body>
-    <p style="text-align: center">Search for any word or phrase in the YouTube Video</p>
+    <p>Search for any word or phrase in the YouTube Video</p>
     <div id="debug"></div>
     <div class="input-field col s6">
       <i class="material-icons prefix">search</i>
       <input id="search" type="search" required>
-      <label for="search"></label>
+      <div class="">
+        <label for="search" class="red accent-4"></label>
+      </div>
       <i class="material-icons">close</i>
     </div>
     <div class="center">
-      <button class="btn waves-effect waves-light red" type="submit" name="action">Search
+      <button id="search-button" class="btn waves-effect waves-light red" type="submit" name="action">Search
         <i class="material-icons right">send</i>
       </button>
       <br>
     </div>
     <div class="center">
-      <p></p>
+      We found n results
     </div>
     <div id="search-results">
       <ul id="search-results-list" class="collapsible" data-collapsible="accordion">
