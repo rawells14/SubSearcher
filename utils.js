@@ -58,7 +58,7 @@ function search(term, parsed){
             }if(i<parsed.length-1){
                 context = context+"</br>"+parsed[i+1]["text"];
             }
-            result.push([result.length, "", parsed[i]["time"]+": "+matched, context]);
+            result.push([result.length, parsed[i]["time"], parsed[i]["time"]+": "+matched, context]);
         }
     }
 
@@ -68,12 +68,11 @@ function search(term, parsed){
 
 
 // Appends a new search result to the search results section
-function appendSearchResult(id, urlToPointTo, time, context){
-
+function appendSearchResult(id, actualTime, timeDesc, context){
     var html = '<li><div id="attribute'+id+'" class="collapsible-header';
-    html+= '"><i class="material-icons">subtitles</i><a href="';
-    html += urlToPointTo+'">';
-    html += time;
+    html+= '"><i class="material-icons">subtitles</i><a class="videolink" href="#" data-time="';
+    html += actualTime+'">';
+    html += timeDesc;
     html += '</a></div><div class="collapsible-body"><p>';
     html += context;
     html += '</p></div></li>'
@@ -90,4 +89,46 @@ function setSearchResult(results){
         appendSearchResult(current[0], current[1], current[2], current[3])
     }
 
+    $(".videolink").click(function () {
+        var time = $(this).attr('data-time');
+        console.log("asdfasf");
+        console.log(time);
+
+        time = ""+time;
+        var a = time.split(':');
+        var seconds = 0;
+        if(a.length==3) {
+            seconds = (+a[0]) * 60 * 60 + (+a[1]) * 60 + (+a[2]);
+        }else if(a.length==2){
+            seconds = (+a[0]) * 60 + (+a[1]);
+        }else{
+            seconds = (+a[0]);
+        }
+
+
+        var queryInfo = {
+            active: true,
+            currentWindow: true
+        };
+        chrome.tabs.query(queryInfo, function(tabs) {
+            var tab = tabs[0];
+            var url = tab.url;
+
+            var newUrl = updateQueryStringParameter(url, "t", seconds);
+
+            chrome.tabs.update(tab.id, {url: newUrl});
+        });
+    })
+
+}
+
+function updateQueryStringParameter(uri, key, value) {
+    var re = new RegExp("([?&])" + key + "=.*?(&|$)", "i");
+    var separator = uri.indexOf('?') !== -1 ? "&" : "?";
+    if (uri.match(re)) {
+        return uri.replace(re, '$1' + key + "=" + value + '$2');
+    }
+    else {
+        return uri + separator + key + "=" + value;
+    }
 }
