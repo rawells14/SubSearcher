@@ -28,4 +28,6 @@ function youTubeAPICall(extension, params, onSuccess){
 }
 
 
-
+function appendSearchResult(urlToPointTo, context){
+    var html = '';
+}
