@@ -40,3 +40,14 @@ function appendSearchResult(id, urlToPointTo, time, context){
     console.log(html);
     $("#search-results-list").append(html);
 }
+
+function setSearchResult(results){
+
+    $("#search-results-list") = null;
+
+    for (var i = 0; i<results.length; i++){
+        var current = results[i]
+        appendSearchResult(current[0], current[1], current[2], current[3])
+    }
+
+}
