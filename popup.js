@@ -8,6 +8,12 @@
  * @param {function(string)} callback - called when the URL of the current tab
  *   is found.
  */
+$(document).ready(function() {
+    for(var i = 0; i < 10; i++){
+    appendSearchResult(i, "www.google.com", "11:21", "a molecule is this big");
+  }
+  $("#attribute0").click();
+});
 function getCurrentTabUrl(callback) {
   // Query filter to be passed to chrome.tabs.query - see
   // https://developer.chrome.com/extensions/tabs#method-query
@@ -49,6 +55,7 @@ function getCurrentTabUrl(callback) {
 
 
 function renderStatus(statusText) {
+  
   document.getElementById('debug').textContent = statusText;
 }
 

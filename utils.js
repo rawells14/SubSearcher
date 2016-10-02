@@ -28,8 +28,10 @@ function youTubeAPICall(extension, params, onSuccess){
 }
 
 // Appends a new search result to the search results section
-function appendSearchResult(urlToPointTo, time, context){
-    var html = '<li><div class="collapsible-header"><i class="material-icons">subtitles</i><a href="';
+function appendSearchResult(id, urlToPointTo, time, context){
+
+    var html = '<li><div id="attribute'+id+'" class="collapsible-header';
+    html+= '"><i class="material-icons">subtitles</i><a href="';
     html += urlToPointTo+'">';
     html += time;
     html += '</a></div><div class="collapsible-body"><p>';
