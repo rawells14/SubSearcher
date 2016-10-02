@@ -45,11 +45,13 @@ function parseData(html){
 
 function search(term, parsed){
     var result = [];
+    var reg = new RegExp(term, "i");
 
     for(var i = 0; i < parsed.length; i++){
-        if(parsed[i]["text"].indexOf(term)!=-1){
-
-            var matched = parsed[i]["text"].replace(term, "<b style='background-color:#fff7aa'>"+term+"</b>");
+        //var execed = reg.exec(parsed[i]["text"]);
+        if(parsed[i]["text"].match(reg)!=null){
+            //console.log("asdfasd");
+            var matched = parsed[i]["text"].replace(reg, "<b style='background-color:#fff7aa'>$&</b>");
             var context = matched;
             if(i>0){
                 context = parsed[i-1]["text"]+"</br>" + context;
