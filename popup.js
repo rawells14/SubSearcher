@@ -59,6 +59,11 @@ function renderStatus(statusText) {
   document.getElementById('debug').textContent = statusText;
 }
 
+chrome.runtime.onMessage.addListener(
+    function(request, sender, sendResponse) {
+      console.log(request);
+    });
+
 document.addEventListener('DOMContentLoaded', function() {
   getCurrentTabUrl(function(url) {
 
@@ -69,18 +74,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     }
 
-    //TODO: This is so hacky lmao
-    var vidId = url.split("youtube.com/watch?")[1].split("v=")[1].split("&")[0];
-    console.log('Current URL: ' + url+", id: "+vidId);
 
-    youTubeAPICall('captions', {"videoId": vidId, "part":"snippet"}, function(resp){
-      renderStatus(JSON.stringify(resp));
+    chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+      chrome.tabs.executeScript(tabs[0].id, {file: "extract.js"});
+    });
 
-      var captionId  = resp["items"][0]["id"];
-      renderStatus(captionId);
-      //youTubeAPICall('captions/'+captionId, {}, function(resp){
-      //  console.log(resp);
-      //})
-    })
   });
 });

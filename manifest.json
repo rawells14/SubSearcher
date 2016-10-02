@@ -7,7 +7,7 @@
   
   "background": {
     "scripts": ["background.js"]
-  }
+  },
   
   "content_scripts": [{
     "js": ["popup.js", "utils.js"],
