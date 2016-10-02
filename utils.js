@@ -54,9 +54,9 @@ function search(term, parsed){
             var matched = parsed[i]["text"].replace(reg, "<b style='background-color:#fff7aa'>$&</b>");
             var context = matched;
             if(i>0){
-                context = parsed[i-1]["text"]+"</br>" + context;
+                context = parsed[i-1]["text"]+"<br/>" + context;
             }if(i<parsed.length-1){
-                context = context+"</br>"+parsed[i+1]["text"];
+                context = context+"<br/>"+parsed[i+1]["text"];
             }
             result.push([result.length, parsed[i]["time"], parsed[i]["time"]+": "+matched, context]);
         }
