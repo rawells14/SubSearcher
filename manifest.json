@@ -4,8 +4,13 @@
   "name": "Getting started example",
   "description": "This extension shows a Google Image search result for the current page",
   "version": "1.0",
+  
+  "background": {
+    "scripts": ["background.js"]
+  }
+  
   "content_scripts": [{
-    "js": ["popup.js", "background.js", "utils.js"],
+    "js": ["popup.js", "utils.js"],
     "matches": ["http://*/*", "https://*/*"]
  }],
 
