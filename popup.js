@@ -14,9 +14,13 @@ var parsedCaptions;
 $(document).ready(function() {
   $("#search-button").click(function(){
     setSearchResult(search($("#search").val(),parsedCaptions));
+    $("#attribute0").click();
+
   });
   $('#search').bind("enterKey",function(e){
     setSearchResult(search($("#search").val(),parsedCaptions));
+    $("#attribute0").click();
+
   });
   $('#search').keyup(function(e){
     if(e.keyCode == 13)
@@ -24,7 +28,6 @@ $(document).ready(function() {
       $(this).trigger("enterKey");
     }
   });
-  $("#attribute0").click();
 });
 function getCurrentTabUrl(callback) {
   // Query filter to be passed to chrome.tabs.query - see

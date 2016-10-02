@@ -48,7 +48,15 @@ function search(term, parsed){
 
     for(var i = 0; i < parsed.length; i++){
         if(parsed[i]["text"].indexOf(term)!=-1){
-            result.push([result.length, "", parsed[i]["time"], parsed[i]["text"].replace(term, "<b>"+term+"</b>")]);
+
+            var matched = parsed[i]["text"].replace(term, "<b style='background-color:#fff7aa'>"+term+"</b>");
+            var context = matched;
+            if(i>0){
+                context = parsed[i-1]["text"]+"</br>" + context;
+            }if(i<parsed.length-1){
+                context = context+"</br>"+parsed[i+1]["text"];
+            }
+            result.push([result.length, "", parsed[i]["time"]+": "+matched, context]);
         }
     }
 
