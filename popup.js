@@ -54,8 +54,26 @@ function renderStatus(statusText) {
 
 document.addEventListener('DOMContentLoaded', function() {
   getCurrentTabUrl(function(url) {
-    // Put the image URL in Google search.
-    renderStatus('Current URL: ' + url);
 
+    // Todo: This probably includes false positives
+    if (!url.includes("youtube.com/watch?")){
+      renderStatus("You aren't on a youtube video!");
+      return;
+
+    }
+
+    //TODO: This is so hacky lmao
+    var vidId = url.split("youtube.com/watch?")[1].split("v=")[1].split("&")[0];
+    console.log('Current URL: ' + url+", id: "+vidId);
+
+    youTubeAPICall('captions', {"videoId": vidId, "part":"snippet"}, function(resp){
+      renderStatus(JSON.stringify(resp));
+
+      var captionId  = resp["items"][0]["id"];
+      renderStatus(captionId);
+      //youTubeAPICall('captions/'+captionId, {}, function(resp){
+      //  console.log(resp);
+      //})
+    })
   });
 });
