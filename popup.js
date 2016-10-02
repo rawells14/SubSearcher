@@ -2,6 +2,9 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
+
+var parsedCaptions;
+
 /**
  * Get the current URL.
  *
@@ -9,9 +12,18 @@
  *   is found.
  */
 $(document).ready(function() {
-    for(var i = 0; i < 10; i++){
-    appendSearchResult(i, "www.google.com", "11:21", "a molecule is this big");
-  }
+  $("#search-button").click(function(){
+    setSearchResult(search($("#search").val(),parsedCaptions));
+  });
+  $('#search').bind("enterKey",function(e){
+    setSearchResult(search($("#search").val(),parsedCaptions));
+  });
+  $('#search').keyup(function(e){
+    if(e.keyCode == 13)
+    {
+      $(this).trigger("enterKey");
+    }
+  });
   $("#attribute0").click();
 });
 function getCurrentTabUrl(callback) {
@@ -61,7 +73,7 @@ function renderStatus(statusText) {
 
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
-      console.log(parseData(request.data));
+      parsedCaptions = parseData(request.data);
     });
 
 document.addEventListener('DOMContentLoaded', function() {

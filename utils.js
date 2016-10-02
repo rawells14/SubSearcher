@@ -32,7 +32,7 @@ function youTubeAPICall(extension, params, onSuccess){
 function parseData(html){
     var parsed = [];
 
-    $('<div/>').html(html).contents().each(function(){
+    $('<div/>').html(html).contents().each(function(index){
         var section = {};
         section["time"]=$(this).find(".caption-line-time").text();
         section["text"]=$(this).find(".caption-line-text").text();
@@ -40,6 +40,19 @@ function parseData(html){
         parsed.push(section);
     });
     return parsed;
+}
+
+
+function search(term, parsed){
+    var result = [];
+
+    for(var i = 0; i < parsed.length; i++){
+        if(parsed[i]["text"].indexOf(term)!=-1){
+            result.push([result.length, "", parsed[i]["time"], parsed[i]["text"].replace(term, "<b>"+term+"</b>")]);
+        }
+    }
+
+    return result;
 }
 
 
