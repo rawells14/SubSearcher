@@ -27,6 +27,23 @@ function youTubeAPICall(extension, params, onSuccess){
     req.send();
 }
 
+
+
+function parseData(html){
+    var parsed = [];
+
+    $('<div/>').html(html).contents().each(function(){
+        var section = {};
+        section["time"]=$(this).find(".caption-line-time").text();
+        section["text"]=$(this).find(".caption-line-text").text();
+        console.log(JSON.stringify(section));
+        parsed.push(section);
+    });
+    return parsed;
+}
+
+
+
 // Appends a new search result to the search results section
 function appendSearchResult(id, urlToPointTo, time, context){
 
@@ -43,10 +60,10 @@ function appendSearchResult(id, urlToPointTo, time, context){
 
 function setSearchResult(results){
 
-    $("#search-results-list") = null;
+    $("#search-results-list").html("");
 
     for (var i = 0; i<results.length; i++){
-        var current = results[i]
+        var current = results[i];
         appendSearchResult(current[0], current[1], current[2], current[3])
     }
 

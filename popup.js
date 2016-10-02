@@ -61,7 +61,7 @@ function renderStatus(statusText) {
 
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
-      console.log(request);
+      console.log(parseData(request.data));
     });
 
 document.addEventListener('DOMContentLoaded', function() {

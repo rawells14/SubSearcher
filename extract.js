@@ -11,7 +11,7 @@ var interval = setInterval(function(){
     var transtext = document.getElementById("transcript-scrollbox").innerHTML;
 
     if(transtext.length>0){
-        chrome.runtime.sendMessage({greeting: transtext}, function(response) {});
+        chrome.runtime.sendMessage({data: transtext}, function(response) {});
         clearInterval(interval);
     }
 
